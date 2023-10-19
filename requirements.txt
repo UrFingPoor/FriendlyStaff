@@ -1,0 +1,4 @@
+sqlite==3.36.0
+getpass==1.0
+colorama==0.4.4
+discord.py-self==2.0.0
