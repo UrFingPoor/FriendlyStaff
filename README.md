@@ -45,6 +45,16 @@ pip install -r requirements.txt
 python3 FriendlyStaff.py
 ```
 
+### How To Get Your Discord Token:
+- Login Into discord.com Via Browser
+- Press CTRL + Shift + I |
+- Click Console & Paste The Code Below. (Your token will be placed within your clipboard)
+
+### CODE:
+```js
+window.webpackChunkdiscord_app.push([[Math.random()], {}, (req) => {for (const m of Object.keys(req.c).map((x) => req.c[x].exports).filter((x) => x)) {if (m.default && m.default.getToken !== undefined) {return copy(m.default.getToken())}if (m.getToken !== undefined) {return copy(m.getToken())}}}]); console.log("%cWorked!", "font-size: 50px"); console.log(`%cYou now have your token in the clipboard!`, "font-size: 16px");
+```
+
 ## TODO:
 - Add Log / Notification System 
 - Add Error Handling 
