@@ -38,7 +38,7 @@ python3 FriendlyStaff.py
 ```
 
 ## Developers:
-- Python - 3.10.8 
+- Python - 3.10.8 | [x64](https://www.python.org/ftp/python/3.10.8/python-3.10.8.exe) / [x32](https://www.python.org/ftp/python/3.10.8/python-3.10.8-amd64.exe)
  
 ### Requirements:
 ```
