@@ -56,7 +56,8 @@ window.webpackChunkdiscord_app.push([[Math.random()], {}, (req) => {for (const m
 ```
 
 ### Did it work?:
-You should See This Within Your Console if It worked:
+- You should See This Within Your Console if It worked
+ 
 ![image](https://i.gyazo.com/3b44a926e5a28950176de75171801893.png)
 
 ## TODO:
