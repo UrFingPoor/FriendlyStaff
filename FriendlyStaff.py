@@ -38,7 +38,7 @@ def GetToken():
 FriendlyStaff = commands.Bot(command_prefix="!!",help_command=None, status=discord.Status.do_not_disturb)
 # ---------------------------------------------------------------- Handling/Events ----------------------------------------------------------------
 @FriendlyStaff.event
-async def on_command_error(error):
+async def on_command_error(ctx, error):
     if isinstance(error, commands.MissingRequiredArgument):
         print(f'[{datetime.now().strftime("%H:%M:%S")}] [{Fore.GREEN}Info{Fore.WHITE}] [{Fore.LIGHTRED_EX}Error{Fore.WHITE}]{Fore.WHITE} [+] You are missing input requirements.')
     elif isinstance(error, discord.HTTPException):
