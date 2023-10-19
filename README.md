@@ -47,7 +47,7 @@ python3 FriendlyStaff.py
 
 # How To Get Your Discord Token:
 - Login Into discord.com Via Browser
-- Press CTRL + Shift + I |
+- Press CTRL + Shift + I 
 - Click Console & Paste The Code Below. (Your token will be placed within your clipboard)
 
 ### CODE:
