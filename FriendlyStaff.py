@@ -24,6 +24,16 @@ with create_connection(os.path.join(os.getcwd(), "./database/auto.db")) as conn:
         conn.commit()
     else:
         print(f'[{datetime.now().strftime("%H:%M:%S")}] [{Fore.GREEN}Info{Fore.WHITE}] [{Fore.LIGHTRED_EX}Local Database Error{Fore.WHITE}].')  
+
+def GetChannelID():
+    cur.execute(f"SELECT channel_id FROM auth;")
+    channel_id = cur.fetchone()
+    return channel_id[0]  
+     
+def GetToken():
+    cur.execute(f"SELECT token FROM auth;")
+    Token = cur.fetchone()
+    return Token[0]
 # ---------------------------------------------------------------- Bot ----------------------------------------------------------------
 FriendlyStaff = commands.Bot(command_prefix="!!",help_command=None, status=discord.Status.do_not_disturb)
 # ---------------------------------------------------------------- Handling/Events ----------------------------------------------------------------
@@ -82,7 +92,7 @@ async def kick(ctx, user: discord.Member):
     WhitedListedFriends = list(cur.fetchall())
     for i in WhitedListedFriends:
         if ctx.author.id == int(i[0]):
-            channel = FriendlyStaff.get_channel(GetChannelID())
+            channel = FriendlyStaff.get_channel(int(GetChannelID()))
             await ctx.send(f"{user.mention} Was kicked From Voice Call", delete_after=2)
             await channel.send(f"!voice-kick {user.mention}")
         else:
@@ -94,7 +104,7 @@ async def ban(ctx, user: discord.Member):
     WhitedListedFriends = list(cur.fetchall())
     for i in WhitedListedFriends:
         if ctx.author.id == int(i[0]):
-            channel = FriendlyStaff.get_channel(GetChannelID())
+            channel = FriendlyStaff.get_channel(int(GetChannelID()))
             await ctx.send(f"{user.mention} Was Banned From Voice Call", delete_after=2)
             await channel.send(f"!voice-ban {user.mention}")
         else:
@@ -106,7 +116,7 @@ async def unban(ctx, user: discord.Member):
     WhitedListedFriends = list(cur.fetchall())
     for i in WhitedListedFriends:
         if ctx.author.id == int(i[0]):
-            channel = FriendlyStaff.get_channel(GetChannelID())
+            channel = FriendlyStaff.get_channel(int(GetChannelID()))
             await ctx.send(f"{user.mention} Was Unbanned From Voice Call", delete_after=2)
             await channel.send(f"!voice-unban {user.mention}")
         else:
@@ -118,7 +128,7 @@ async def hide(ctx):
     WhitedListedFriends = list(cur.fetchall())
     for i in WhitedListedFriends:
         if ctx.author.id == int(i[0]):
-            channel = FriendlyStaff.get_channel(GetChannelID())
+            channel = FriendlyStaff.get_channel(int(GetChannelID()))
             await ctx.send(f"Voice Call Hidden!", delete_after=2)
             await channel.send(f"!voice-hide")
         else:
@@ -130,7 +140,7 @@ async def show(ctx):
     WhitedListedFriends = list(cur.fetchall())
     for i in WhitedListedFriends:
         if ctx.author.id == int(i):
-            channel = FriendlyStaff.get_channel(GetChannelID())
+            channel = FriendlyStaff.get_channel(int(GetChannelID()))
             await ctx.send(f"Voice Call Unhidden!", delete_after=2)
             await channel.send(f"!voice-reveal")
         else:
@@ -142,7 +152,7 @@ async def limit(ctx, value):
     WhitedListedFriends = list(cur.fetchall())
     for i in WhitedListedFriends:
         if ctx.author.id == int(i[0]):
-            channel = FriendlyStaff.get_channel(GetChannelID())
+            channel = FriendlyStaff.get_channel(int(GetChannelID()))
             await ctx.send(f"Changed Voice Call Limit Changed To: {value}", delete_after=2)
             await channel.send(f"!voice-limit {value}") 
         else:
@@ -154,7 +164,7 @@ async def lock(ctx):
     WhitedListedFriends = list(cur.fetchall())
     for i in WhitedListedFriends:
         if ctx.author.id == int(i[0]):
-            channel = FriendlyStaff.get_channel(GetChannelID())
+            channel = FriendlyStaff.get_channel(int(GetChannelID()))
             await ctx.send(f"Voice Call Locked!", delete_after=2)
             await channel.send(f"!voice-lock")
         else:
@@ -166,7 +176,7 @@ async def unlock(ctx):
     WhitedListedFriends = list(cur.fetchall())
     for i in WhitedListedFriends:
         if ctx.author.id == int(i[0]):
-            channel = FriendlyStaff.get_channel(GetChannelID())
+            channel = FriendlyStaff.get_channel(int(GetChannelID()))
             await ctx.send(f"Voice Call Unlocked!", delete_after=2)
             await channel.send(f"!voice-unlock") 
         else:
@@ -246,16 +256,6 @@ def UpdateChannelID(channel_id):
     except:
         print(f'[{datetime.now().strftime("%H:%M:%S")}] [{Fore.GREEN}Info{Fore.WHITE}] [{Fore.LIGHTRED_EX}Alert{Fore.WHITE}] [+] Local DB Error.')            
 
-def GetToken():
-    cur.execute(f"SELECT token FROM auth;")
-    Token = cur.fetchone()
-    return Token[0]
-
-def GetChannelID():
-    cur.execute(f"SELECT channel_id FROM auth;")
-    channel_id = cur.fetchone()
-    return channel_id[0]
-
 def main():
     Logo()
     print(f'{Fore.LIGHTYELLOW_EX}\n\nOptions:\n1. Run Bot\n2. Add User\n3. Remove User\n4. Change Token\n5. Change Channelid\n6. Exit Application{Fore.WHITE}\n')
@@ -263,7 +263,7 @@ def main():
         case "1":
             Logo()
             print(f"\nYou have {Fore.LIGHTGREEN_EX}Successfully{Fore.WHITE} Logged in! Please Enjoy Using {Fore.LIGHTYELLOW_EX}Friendly Staff{Fore.WHITE} v1.0.")
-            FriendlyStaff.run(f"{GetToken()}", log_handler=None)          
+            FriendlyStaff.run(f"{GetToken()}")          
         case "2":
             user_id = input(f'[{datetime.now().strftime("%H:%M:%S")}] [{Fore.LIGHTGREEN_EX}Info{Fore.WHITE}] [+] Enter The Person You Wish To Whitelist: ')
             WhiteListUser(user_id)   
@@ -277,7 +277,7 @@ def main():
             ChangeToken(token)     
         case "5":
             ChannelID = input(f'[{datetime.now().strftime("%H:%M:%S")}] [{Fore.LIGHTGREEN_EX}Info{Fore.WHITE}] [+] Enter The Channel ID: ')
-            WhiteListUser(ChannelID)               
+            UpdateChannelID(ChannelID)               
         case "6":
             exit()
     
