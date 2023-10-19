@@ -32,20 +32,17 @@ This was made to allow friends to pass commands to a channel in dadscord which a
 !!remove <UserID>
 ```
 
+## Developers:
+- Python - 3.10.8 | [x64](https://www.python.org/ftp/python/3.10.8/python-3.10.8.exe) / [x32](https://www.python.org/ftp/python/3.10.8/python-3.10.8-amd64.exe)
+
+### Install Requirements:
+```python
+pip install -r requirements.txt
+```
+
 ### Usage:
 ```python
 python3 FriendlyStaff.py
-```
-
-## Developers:
-- Python - 3.10.8 | [x64](https://www.python.org/ftp/python/3.10.8/python-3.10.8.exe) / [x32](https://www.python.org/ftp/python/3.10.8/python-3.10.8-amd64.exe)
- 
-### Requirements:
-```
-• sqlite3
-• getpass
-• discord
-• colorama 
 ```
 
 ## TODO:
